@@ -1,0 +1,16 @@
+services:
+  cf-ddns:
+    build: .
+    container_name: cf-ddns
+    restart: unless-stopped
+    # host network REQUIRED so --interface sees real host interfaces
+    network_mode: host
+    environment:
+      API_KEY: "your_cloudflare_api_token"
+      CF_API: "https://api.cloudflare.com/client/v4"
+      ZONE: "astrobunny.net"
+      SUBDOMAIN: "azusa"
+      INTERFACE: "eth1"
+      CRON: "*/5 * * * *"
+      PROXIED: "false"
+      RECORD_TTL: "120"
