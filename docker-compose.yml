@@ -8,8 +8,8 @@ services:
     environment:
       API_KEY: "your_cloudflare_api_token"
       CF_API: "https://api.cloudflare.com/client/v4"
-      ZONE: "astrobunny.net"
-      SUBDOMAIN: "azusa"
+      ZONE: "arrakis.net"
+      SUBDOMAIN: "muaddib"
       INTERFACE: "eth1"
       CRON: "*/5 * * * *"
       PROXIED: "false"

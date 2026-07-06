@@ -22,8 +22,8 @@ which interface's egress public IP gets published.
 | Var          | Required | Default                              | Notes                              |
 |--------------|----------|--------------------------------------|------------------------------------|
 | `API_KEY`    | yes      | —                                    | Cloudflare API token (Bearer)      |
-| `ZONE`       | yes      | —                                    | e.g. `astrobunny.net`              |
-| `SUBDOMAIN`  | no       | *(empty = apex)*                     | e.g. `azusa` → `azusa.astrobunny.net` |
+| `ZONE`       | yes      | —                                    | e.g. `arrakis.net`                 |
+| `SUBDOMAIN`  | no       | *(empty = apex)*                     | e.g. `muaddib` → `muaddib.arrakis.net` |
 | `INTERFACE`  | no       | `eth1`                               | interface to read public IP from   |
 | `CF_API`     | no       | `https://api.cloudflare.com/client/v4` | API base URL                     |
 | `CRON`       | no       | `*/5 * * * *`                        | update schedule                    |

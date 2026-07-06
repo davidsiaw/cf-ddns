@@ -3,7 +3,7 @@ set -euo pipefail
 
 # oznu-compatible env vars
 : "${API_KEY:?need API_KEY (Cloudflare API token)}"
-: "${ZONE:?need ZONE (e.g. astrobunny.net)}"
+: "${ZONE:?need ZONE (e.g. arrakis.net)}"
 SUBDOMAIN="${SUBDOMAIN:-}"
 IFACE="${INTERFACE:-eth1}"
 RECORD_TTL="${RECORD_TTL:-120}"
@@ -12,7 +12,7 @@ PROXIED="${PROXIED:-false}"
 IP_SERVICES="${IP_SERVICES:-${IP_SERVICE:-https://api.ipify.org https://ifconfig.me/ip https://icanhazip.com https://ipv4.icanhazip.com https://checkip.amazonaws.com}}"
 CF_API="${CF_API:-https://api.cloudflare.com/client/v4}"
 
-# Build FQDN: azusa + astrobunny.net -> azusa.astrobunny.net (empty sub -> apex)
+# Build FQDN: muaddib + arrakis.net -> muaddib.arrakis.net (empty sub -> apex)
 if [[ -n "$SUBDOMAIN" ]]; then
   RECORD="${SUBDOMAIN}.${ZONE}"
 else
