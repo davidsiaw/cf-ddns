@@ -1,7 +1,7 @@
 #!/bin/bash
 set -euo pipefail
 
-IMAGE="${IMAGE:-cf-ddns:latest}"
+IMAGE="${IMAGE:-davidsiaw/cf-ddns:latest}"
 
 # Always build for linux/amd64 (x86_64 target host)
 docker buildx build \
