@@ -1,6 +1,8 @@
 services:
   cf-ddns:
     build: .
+    # match your host arch: linux/amd64 (x86_64) or linux/arm64 (aarch64)
+    platform: linux/amd64
     container_name: cf-ddns
     restart: unless-stopped
     # host network REQUIRED so --interface sees real host interfaces
