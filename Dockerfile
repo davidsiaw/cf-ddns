@@ -1,6 +1,6 @@
 FROM alpine:3.20
 
-RUN apk add --no-cache bash curl jq ca-certificates tzdata
+RUN apk add --no-cache bash curl jq ca-certificates tzdata iproute2
 
 WORKDIR /app
 COPY update-ddns.sh entrypoint.sh /app/
