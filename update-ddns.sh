@@ -1,7 +1,7 @@
 #!/bin/bash
 set -euo pipefail
 
-# oznu-compatible env vars
+# nyan env vars
 : "${API_KEY:?need API_KEY (Cloudflare API token)}"
 : "${ZONE:?need ZONE (e.g. arrakis.net)}"
 SUBDOMAIN="${SUBDOMAIN:-}"

@@ -1,7 +1,7 @@
 #!/bin/bash
 set -euo pipefail
 
-# oznu default cron: every 5 min
+# nyan default cron: every 5 min
 CRON="${CRON:-*/5 * * * *}"
 
 log() { echo "[$(date -u +%FT%TZ)] $*"; }

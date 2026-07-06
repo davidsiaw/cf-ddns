@@ -2,8 +2,8 @@
 
 Cloudflare DDNS updater that reports the **public IP of a specific network interface**.
 
-Unlike oznu/cloudflare-ddns, it uses `curl --interface` so multi-homed hosts can pin
-which interface's egress public IP gets published.
+Uses `curl --interface` so multi-homed hosts can pin which interface's egress
+public IP gets published. nyan~
 
 ## How it works
 
