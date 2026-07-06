@@ -8,7 +8,8 @@ SUBDOMAIN="${SUBDOMAIN:-}"
 IFACE="${INTERFACE:-eth1}"
 RECORD_TTL="${RECORD_TTL:-120}"
 PROXIED="${PROXIED:-false}"
-IP_SERVICE="${IP_SERVICE:-https://api.ipify.org}"
+# Space-separated list of public-IP echo services (tried in order)
+IP_SERVICES="${IP_SERVICES:-${IP_SERVICE:-https://api.ipify.org https://ifconfig.me/ip https://icanhazip.com https://ipv4.icanhazip.com https://checkip.amazonaws.com}}"
 CF_API="${CF_API:-https://api.cloudflare.com/client/v4}"
 
 # Build FQDN: azusa + astrobunny.net -> azusa.astrobunny.net (empty sub -> apex)
@@ -20,13 +21,21 @@ fi
 
 log() { echo "[$(date -u +%FT%TZ)] $*"; }
 
-# Public IP as seen when egressing $IFACE
-IP="$(curl -fsS --interface "$IFACE" "$IP_SERVICE")"
+# Public IP as seen when egressing $IFACE. Try reflectors in order until one works.
+IP=""
+for svc in $IP_SERVICES; do
+  RESP="$(curl -fsS --max-time 10 --interface "$IFACE" "$svc" 2>/dev/null | tr -d '[:space:]')"
+  if [[ "$RESP" =~ ^([0-9]{1,3}\.){3}[0-9]{1,3}$ ]]; then
+    IP="$RESP"
+    log "Public IP via $IFACE: $IP  (from $svc, record: $RECORD)"
+    break
+  fi
+  log "reflector failed/invalid: $svc"
+done
 if [[ -z "$IP" ]]; then
-  log "ERROR: empty IP from $IP_SERVICE via $IFACE"
+  log "ERROR: all reflectors failed via $IFACE"
   exit 1
 fi
-log "Public IP via $IFACE: $IP  (record: $RECORD)"
 
 api() {
   curl -fsS -H "Authorization: Bearer $API_KEY" \

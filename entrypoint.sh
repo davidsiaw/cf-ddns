@@ -7,7 +7,7 @@ CRON="${CRON:-*/5 * * * *}"
 log() { echo "[$(date -u +%FT%TZ)] $*"; }
 
 # Export env so cron job sees it
-printenv | grep -E '^(API_KEY|CF_API|ZONE|SUBDOMAIN|INTERFACE|CRON|PROXIED|RECORD_TTL|IP_SERVICE)=' \
+printenv | grep -E '^(API_KEY|CF_API|ZONE|SUBDOMAIN|INTERFACE|CRON|PROXIED|RECORD_TTL|IP_SERVICE|IP_SERVICES)=' \
   | sed 's/^/export /' > /app/env.sh
 
 CRONFILE=/etc/crontabs/root
